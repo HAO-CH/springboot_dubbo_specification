@@ -13,4 +13,5 @@ public interface SpecService {
     void addSpec(TbSpecification spec, String[] optionNames, Integer[] orders);
 
     void updateSpec(TbSpecification spec, String[] optionNames, Integer[] orders);
+
 }
