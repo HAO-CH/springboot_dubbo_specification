@@ -1,0 +1,59 @@
+<a href="javascript:toPage(1)">首页</a>
+<a href="javascript:toPage(2)">上一页</a>
+<a href="javascript:toPage(3)">下一页</a>
+<a href="javascript:toPage(4)">尾页</a>
+当前第<input id="pageNumber" name="pageNum" size="1">页
+每页<input id="pageSize" name="pageSize" size="1">条
+一共<input id="totalPage" name="lastPage" readonly="readonly" size="1">页
+一共<input id="totalCount" name="total" readonly="readonly" size="1">条
+<script type="text/javascript">
+    //构建分页数据
+    function buildPage(result){
+        //当前页
+        var pageNumber = result.pageNum;
+        //每页大小
+        var pageSize = result.pageSize;
+        //总条数
+        var totalCount = result.total;
+        //总页数
+        var totalPage  = result.lastPage;
+        $("#pageNumber").val(pageNumber);
+        $("#pageSize").val(pageSize);
+        $("#totalCount").val(totalCount);
+        $("#totalPage").val(totalPage);
+    }
+    //跳转页面
+    function toPage(flag){
+        //获取当前页
+        var pageNumber = parseInt($("#pageNumber").val());
+        //获取最后一页
+        var totalPage = parseInt($("#totalPage").val());
+        if(flag==1){
+            if(pageNumber <= 1){
+                toastr.warning("已经是首页");
+                return;
+            }
+            $("#pageNumber").val(1);
+        }else if(flag==2){
+            if(pageNumber <= 1){
+                toastr.warning("已经是首页");
+                return;
+            }
+            $("#pageNumber").val(pageNumber - 1);
+        }else if(flag==3){
+            if(pageNumber >= totalPage){
+                toastr.warning("已经是尾页");
+                return;
+            }
+            $("#pageNumber").val(pageNumber + 1);
+        }else if(flag==4){
+            if(pageNumber >= totalPage){
+                toastr.warning("已经是尾页");
+                return;
+            }
+            $("#pageNumber").val(totalPage);
+        }
+        //调用ajax查询方法
+        getData();
+    }
+</script>

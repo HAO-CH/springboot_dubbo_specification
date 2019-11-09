@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    username: root
+    password: 1234
+    url: jdbc:mysql://127.0.0.1:3306/dk1902_1106
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+dubbo:
+  application:
+    name: springboot_dubbo_consumer
+  registry:
+    address: 127.0.0.1:2181
+    protocol: zookeeper
+  protocol:
+    name: dubbo
+    port: 20880
+  consumer:
+    check: false
+
+rocketmq:
+#  name-server: 192.168.248.55:9876
+  name-server: localhost:9876
+  producer:
+    group: my-group
+
+logging:
+  level:
+    com:
+      dk:
+        controller: debug
+        service: info
+  path: D:/logs/
+
+
+
+
+

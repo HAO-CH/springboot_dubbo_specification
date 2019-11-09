@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>修改规格</h1>
+    <form id="addForm">
+        <input type="hidden" name="id" id="id" th:value="${spec.id}">
+        规格名称：<input name="specName" id="specName" th:value="${spec.specName}"><br><br>
+
+        <input type="button" value="新增规格" onclick="insert()"><br>
+        <table width="80%" border="0" id="table1">
+            <tr>
+                <th>规格选项</th>
+                <th>排序</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="option:${options}">
+                <td><input name='optionName' th:value="${option.optionName}"></input></td>
+                <td><input name='orders' th:value="${option.orders}"></input></td>
+                <td><a onclick='deleteTr(this)'>删除</a></td>
+            </tr>
+        </table>
+    </form>
+</body>
+<script>
+    function insert() {
+        var table = document.getElementById("table1");
+        var tr = document.createElement("tr");
+        tr.innerHTML = '<td><input name="optionName"></td><td><input name="orders"></td><td><a href="#" onclick="deleteTr(this)">删除</a></td>';
+        table.appendChild(tr);
+    }
+
+    function deleteTr(obj){
+        var tr = obj.parentNode.parentNode;
+        tr.parentNode.removeChild(tr);
+    }
+</script>
+</html>

@@ -1,0 +1,33 @@
+server:
+  port: 8081
+
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    username: root
+    password: 1234
+    url: jdbc:mysql://127.0.0.1:3306/dk1902_1108
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapping/*.xml
+  type-aliases-package: com.dk.pojo
+  config-location: classpath:mybatis/config/sqlMapConfig.xml
+
+dubbo:
+  application:
+    name: springboot_dubbo_provider
+  registry:
+    address: 127.0.0.1:2181
+    protocol: zookeeper
+  protocol:
+    name: dubbo
+    port: 20880
+  consumer:
+    check: false
+
